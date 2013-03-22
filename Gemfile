@@ -29,10 +29,38 @@ gem 'jbuilder', '~> 1.0.1'
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano', group: :development
 
 # To use debugger
 # gem 'debugger'
+
+# Customized gems installed for this project
+# Normally these would be limited to ~> minor
+# versions but this is so bleeding edge I plan
+# to be updating often and would lock them
+# down once rails 4 stabilizes a bit
+
+####################### gems needed in all environments
+
+# authentication gem
+gem 'devise', :git => 'git://github.com/plataformatec/devise.git', :branch => 'rails4'
+
+# bootstrap gem for styling
+gem 'bootstrap-sass', '~> 2.3.1.0'
+
+####################### gems needed for just development and testing
+group :development, :test do
+  # rspec testing
+  gem 'rspec-rails'
+end  
+
+####################### gem needed just for testing
+group :test do
+  # browser simulator over RackTest
+  gem 'capybara'
+  # alternative to selenium and faster
+  gem 'capybara-webkit'
+end
