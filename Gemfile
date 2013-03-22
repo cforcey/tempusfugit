@@ -48,6 +48,9 @@ gem 'unicorn'
 # authentication gem
 gem 'devise', :git => 'git://github.com/plataformatec/devise.git', :branch => 'rails4'
 
+# temporary adjustment for devise reliance on attribute accessible
+gem 'protected_attributes'
+
 # bootstrap gem for styling
 gem 'bootstrap-sass', '~> 2.3.1.0'
 
