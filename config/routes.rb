@@ -1,11 +1,17 @@
 Tempusfugit::Application.routes.draw do
+  
+  # static pages handled by a single controller pages
+  get "welcome" => 'pages#welcome', as: :welcome
+  get "about" => 'pages#about', as: :about
+  get "contact" => 'pages#contact', as: :contact
+  get "faq" => 'pages#faq', as: :faq
+  
+  # routing macros from devise for our two user classes
   devise_for :admins
   devise_for :users
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root to: 'welcome#index'
+  root to: 'pages#welcome'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
