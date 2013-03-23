@@ -57,6 +57,9 @@ gem 'protected_attributes'
 # bootstrap gem for styling
 gem 'bootstrap-sass', '~> 2.3.1.0'
 
+# fontawesome for font based icons compatible with bootstrap
+gem 'font-awesome-sass-rails'
+
 ####################### gems needed for just development and testing
 group :development, :test do
   # rspec testing

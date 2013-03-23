@@ -9,5 +9,25 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
  */
+
+/*
+* Sass variables do not compile well with the default sprockets require tree
+* so we use the @import built into sass for smart importing
+*/
+
+@import "bootstrap";
+@import "bootstrap-responsive";
+@import 'font-awesome';
+
+/*
+* Overrides common to all pages
+*/
+
+/*
+* Make room for the permanent top menu
+*/
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
