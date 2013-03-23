@@ -60,6 +60,15 @@ gem 'bootstrap-sass', '~> 2.3.1.0'
 # fontawesome for font based icons compatible with bootstrap
 gem 'font-awesome-sass-rails'
 
+# simple_form to make form generation easier and better
+gem 'simple_form'
+
+# abilities and permissions (no need for more complex roles yet)
+gem 'cancan'
+
+# simple active link for the top navigation
+gem 'active_link_to'
+
 ####################### gems needed for just development and testing
 group :development, :test do
   # rspec testing
