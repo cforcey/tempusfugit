@@ -2,10 +2,10 @@
 
 FactoryGirl.define do
   factory :client do
-    name "MyString"
-    description "MyString"
-    user_id 1
-    hourly_rate 1
-    notes "MyText"
+    name "Sample Client"
+    description "Client description."
+    user
+    hourly_rate 50
+    notes "My notes."
   end
 end

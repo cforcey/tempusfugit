@@ -19,4 +19,11 @@ class User < ActiveRecord::Base
   # handle blank, extra long, or trailing spaces
   normalize_attributes :first, :middle, :last, :message, :email, :with  => [ :strip, :blank, :squish, { :truncate => { :length => 255 } } ]
   
+  # a user has time spans that they have worked
+  has_many :spans, :dependent => :destroy
+  
+  # a user has projects and, through them, clients
+  has_many :projects, :dependent => :destroy
+  has_many :clients, :through => :projects
+  
 end
