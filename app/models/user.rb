@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :roles
+  attr_accessible :email, :password, :password_confirmation, :remember_me, 
+    :roles, :first, :middle, :last, :organization, :message, :hourly_rate
   
   # Canard defines roles in order from least to most powerful
   acts_as_user :roles => [:timekeeper, :admin]
