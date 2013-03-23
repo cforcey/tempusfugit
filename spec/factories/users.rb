@@ -7,7 +7,7 @@ FactoryGirl.define do
     email
     hourly_rate 45
     password "secret!!!"
-    password_confirmation "secret!!!"
+    password_confirmation { password }
     roles ["admin"]
   end
 end
