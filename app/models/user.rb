@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
     :roles, :first, :middle, :last, :organization, :message, :hourly_rate
   
   # Canard defines roles in order from least to most powerful
-  acts_as_user :roles => [:timekeeper, :admin]
+  acts_as_user :roles => [:timekeeper, :admin] if ActiveRecord::Base.connected?
 
   # require that at least one role be set
   validates :roles_mask, :presence => true
