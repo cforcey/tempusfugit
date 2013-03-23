@@ -1,9 +1,11 @@
 <%= simple_form_for @user do |f| %>
 <div class="form-inputs">
 	<%= f.input :email, :required => true, :autofocus => true %>
+	<% if @user.new_record? -%>
 	<%= f.input :password, :required => true %>
 	<%= f.input :password_confirmation, :required => true %>
-	<%= f.collection_check_boxes :roles, User::ROLES.map { |r| [r, r.humanize]}, :first, :last  %>
+	<% end -%>
+	<%= f.collection_check_boxes :roles, valid_roles, :first, :last  %>
 </div>
 <div class="form-actions">
 	<%= f.button :submit %>

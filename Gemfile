@@ -66,6 +66,9 @@ gem 'simple_form'
 # abilities and permissions (no need for more complex roles yet)
 gem 'cancan'
 
+# role based abilities with specs
+gem 'canard'
+
 # simple active link for the top navigation
 gem 'active_link_to'
 
@@ -73,6 +76,8 @@ gem 'active_link_to'
 group :development, :test do
   # rspec testing
   gem 'rspec-rails'
+  # factory girl can be handy in development too for generators
+  gem 'factory_girl_rails'
 end  
 
 ####################### gem needed just for testing
@@ -81,4 +86,6 @@ group :test do
   gem 'capybara'
   # alternative to selenium and faster
   gem 'capybara-webkit'
+  # database cleaner for when transactions are not available
+  gem 'database_cleaner'
 end
