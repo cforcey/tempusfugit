@@ -1,5 +1,9 @@
 Tempusfugit::Application.routes.draw do
   
+  resources :clients
+
+  resources :projects
+
   resources :spans
 
   get "users/index"

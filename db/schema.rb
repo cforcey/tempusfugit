@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130323194333) do
+ActiveRecord::Schema.define(version: 20130323201810) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,34 @@ ActiveRecord::Schema.define(version: 20130323194333) do
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+
+  create_table "clients", force: true do |t|
+    t.string   "name",                    null: false
+    t.string   "description"
+    t.integer  "user_id"
+    t.integer  "hourly_rate", default: 0, null: false
+    t.text     "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "clients", ["name"], name: "index_clients_on_name"
+  add_index "clients", ["user_id"], name: "index_clients_on_user_id"
+
+  create_table "projects", force: true do |t|
+    t.string   "name",                    null: false
+    t.string   "description"
+    t.integer  "user_id",                 null: false
+    t.integer  "client_id",               null: false
+    t.integer  "hourly_rate", default: 0, null: false
+    t.text     "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "projects", ["client_id"], name: "index_projects_on_client_id"
+  add_index "projects", ["name"], name: "index_projects_on_name"
+  add_index "projects", ["user_id"], name: "index_projects_on_user_id"
 
   create_table "spans", force: true do |t|
     t.string   "name",                       null: false
