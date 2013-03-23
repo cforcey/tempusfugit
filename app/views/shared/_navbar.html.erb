@@ -6,31 +6,31 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="brand" href="/">Tempus Fugit</a>
+			<a class="brand" href="/"><%= t('views.navigation.site_title') %></a>
 			<div class="nav-collapse collapse">
 				<ul class="nav">
-					<%= active_link_to 'Home', root_path, :wrap_tag => :li %>
+					<%= active_link_to t('views.navigation.home'), root_path, :wrap_tag => :li %>
 
-					<%= active_link_to 'About', about_path, :wrap_tag => :li %>
+					<%= active_link_to t('views.navigation.about'), about_path, :wrap_tag => :li %>
 
-					<%= active_link_to 'Contact', contact_path, :wrap_tag => :li %>
+					<%= active_link_to t('views.navigation.contact'), contact_path, :wrap_tag => :li %>
 
-					<%= active_link_to 'FAQ', faq_path, :wrap_tag => :li %>
+					<%= active_link_to t('views.navigation.about'), faq_path, :wrap_tag => :li %>
 
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<%= active_link_to 'Manage Users', root_path, :wrap_tag => :li %>
-							<%= active_link_to 'Reports', root_path, :wrap_tag => :li %>
+							<%= active_link_to  t('views.navigation.manage_users'), users_path, :wrap_tag => :li %>
+							<%= active_link_to  t('views.navigation.view_reports'), '#', :wrap_tag => :li %>
 						</ul>
 					</li>
 				</ul>
 				<ul class="nav pull-right">
 					<% if user_signed_in? %>
-					<%= active_link_to 'Profile', edit_user_path(current_user), :wrap_tag => :li %>
-					<%= active_link_to 'Sign Out', destroy_user_session_path, :method => :delete, :wrap_tag => :li %>
+					<%= active_link_to  t('views.navigation.profile'), edit_user_path(current_user), :wrap_tag => :li %>
+					<%= active_link_to  t('views.navigation.sign_out'), destroy_user_session_path, :method => :delete, :wrap_tag => :li %>
 					<% else -%>
-					<%= active_link_to 'Sign In', new_user_session_path, :wrap_tag => :li %>
+					<%= active_link_to  t('views.navigation.sign_in'), new_user_session_path, :wrap_tag => :li %>
 					<% end -%>
 				</ul>
 			</div><!--/.nav-collapse -->

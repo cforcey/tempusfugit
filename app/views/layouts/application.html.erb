@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Tempus Fugit</title>
+    <title><%= t('views.navigation.site_title') %> <%= " | #{@title}" unless @title.blank? %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A simplified time sheet entry system because life is short.">
     <meta name="author" content="Charles Forcey">

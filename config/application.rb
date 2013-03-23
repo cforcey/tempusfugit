@@ -24,6 +24,9 @@ module Tempusfugit
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     
+    # Allow rails to find nested local files in folders
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
+    
     # special rails 4 hack for bootstrap-sass 
     # https://github.com/thomas-mcdonald/bootstrap-sass
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)

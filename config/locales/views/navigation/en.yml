@@ -18,7 +18,21 @@
 #
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
-en:
-  hello: "Hello World"
 
-      
+en:
+  views:
+    navigation:
+      site_title: "Tempus Fugit"
+      description: ""
+      home: "Home"
+      about: "About"
+      contact: "Contact"
+      faq: "FAQ"
+      admin: "Admin"
+      manage_users: "Manage users"
+      view_reports: "View reports"
+      sign_in: "Sign in"
+      sign_out: "Sign out"
+      profile: "Profile"
+      copyright: "Charles Forcey 2013"
+      motto: "Life is short; track your time."
