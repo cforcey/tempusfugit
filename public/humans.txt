@@ -1,0 +1,16 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Charles Forcey -- creator -- cforcey
+
+# THANKS
+
+    The amazing people at Rails.org, Devise, Twitter Bootstrap, and all the other open source producers that make quick sites like this possible.
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3
+    Bootstrap.css, jQuery, Modernizr
+    Ruby on Rails 4.0, Postgresql, Unicorn, Heroku
