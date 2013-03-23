@@ -28,5 +28,9 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
+    
+    # in models/ability.rb
+    can :manage, :all if user.is? :admin
+    can :read, :all if user.is? :user
   end
 end
