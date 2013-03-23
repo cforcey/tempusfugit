@@ -72,6 +72,9 @@ gem 'canard'
 # simple active link for the top navigation
 gem 'active_link_to'
 
+# sanitizes input for leading spaces, length, etc.
+gem 'attribute_normalizer'
+
 ####################### gems needed for just development and testing
 group :development, :test do
   # rspec testing

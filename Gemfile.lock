@@ -39,6 +39,7 @@ GEM
       tzinfo (~> 0.3.33)
     arel (4.0.0.beta2)
     atomic (1.0.1)
+    attribute_normalizer (1.1.0)
     bcrypt-ruby (3.0.1)
     bootstrap-sass (2.3.1.0)
       sass (~> 3.2)
@@ -183,6 +184,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_link_to
+  attribute_normalizer
   bootstrap-sass (~> 2.3.1.0)
   canard
   cancan
