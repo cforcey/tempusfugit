@@ -7,9 +7,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # create an initial administrator to kick things off
-a = Admin.where(:email => 'admin@example.com').first_or_create(:password => '@dminister', :password_confirmation => '@dminister' )
+a = User.where(:email => 'admin@example.com').first_or_create(:password => '@dminister', :password_confirmation => '@dminister' )
 if a.errors.present?
   puts a.errors.inspect 
 else
-  puts "Created or reset initial administrator admin@example.com to password of '@administer'."
+  puts "Created or reset initial user admin@example.com to password of '@administer'."
 end  

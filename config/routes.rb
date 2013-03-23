@@ -1,16 +1,22 @@
 Tempusfugit::Application.routes.draw do
   
+  get "users/index"
+  get "users/show"
+  get "users/edit"
+  get "users/create"
+  get "users/new"
+  get "users/update"
+  get "users/delete"
   # static pages handled by a single controller pages
   get "welcome" => 'pages#welcome', as: :welcome
   get "about" => 'pages#about', as: :about
   get "contact" => 'pages#contact', as: :contact
   get "faq" => 'pages#faq', as: :faq
   
-  # routing macros from devise for our two user classes
-  # with users first so it is the Warden default
+  # routing macros from devise for our user class
   devise_for :users
-  devise_for :admins
   
+  # resource routes for users
   resources :users
 
   # You can have the root of your site routed with "root"
