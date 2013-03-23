@@ -1,0 +1,43 @@
+<h1>Listing spans</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>User</th>
+      <th>Project</th>
+      <th>Start at</th>
+      <th>End at</th>
+      <th>Billable</th>
+      <th>Invoiced at</th>
+      <th>Notes</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @spans.each do |span| %>
+    <tr>
+      <td><%= span.name %></td>
+      <td><%= span.description %></td>
+      <td><%= span.user_id %></td>
+      <td><%= span.project_id %></td>
+      <td><%= span.start_at %></td>
+      <td><%= span.end_at %></td>
+      <td><%= span.billable %></td>
+      <td><%= span.invoiced_at %></td>
+      <td><%= span.notes %></td>
+      <td><%= link_to 'Show', span %></td>
+      <td><%= link_to 'Edit', edit_span_path(span) %></td>
+      <td><%= link_to 'Destroy', span, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to 'New Span', new_span_path %>

@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @span.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @span.description %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @span.user_id %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @span.project_id %>
+</p>
+
+<p>
+  <strong>Start at:</strong>
+  <%= @span.start_at %>
+</p>
+
+<p>
+  <strong>End at:</strong>
+  <%= @span.end_at %>
+</p>
+
+<p>
+  <strong>Billable:</strong>
+  <%= @span.billable %>
+</p>
+
+<p>
+  <strong>Invoiced at:</strong>
+  <%= @span.invoiced_at %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @span.notes %>
+</p>
+
+
+<%= link_to 'Edit', edit_span_path(@span) %> |
+<%= link_to 'Back', spans_path %>

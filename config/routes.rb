@@ -1,5 +1,7 @@
 Tempusfugit::Application.routes.draw do
   
+  resources :spans
+
   get "users/index"
   get "users/show"
   get "users/edit"
