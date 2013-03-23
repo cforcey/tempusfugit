@@ -7,8 +7,9 @@ Tempusfugit::Application.routes.draw do
   get "faq" => 'pages#faq', as: :faq
   
   # routing macros from devise for our two user classes
-  devise_for :admins
+  # with users first so it is the Warden default
   devise_for :users
+  devise_for :admins
 
   # You can have the root of your site routed with "root"
   root to: 'pages#welcome'
