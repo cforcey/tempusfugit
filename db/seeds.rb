@@ -7,7 +7,11 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # create an initial administrator to kick things off
-a = User.where(:email => 'admin@example.com').first_or_create(:password => '@dminister', :password_confirmation => '@dminister', :roles => ['admin']  )
+a = User.where(:email => 'admin@example.com').first_or_create(:password => '@dminister', 
+  :password_confirmation => '@dminister', 
+  :roles => ['admin'],
+  :first => 'Default',
+  :last => 'Administrator'  )
 if a.errors.present?
   puts a.errors.inspect 
 else

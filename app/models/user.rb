@@ -11,4 +11,12 @@ class User < ActiveRecord::Base
   # Canard defines roles in order from least to most powerful
   acts_as_user :roles => [:timekeeper, :admin]
 
+  # require that at least one role be set
+  validates :roles_mask, :presence => true
+  # validate that first and last names are provided
+  validates :last, :first, :presence => true
+  
+  # handle blank, extra long, or trailing spaces
+  normalize_attributes :first, :middle, :last, :message, :email, :with  => [ :strip, :blank, :squish, { :truncate => { :length => 255 } } ]
+  
 end
