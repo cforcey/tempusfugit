@@ -30,8 +30,8 @@
       <td><%= span.billable %></td>
       <td><%= span.invoiced_at %></td>
       <td><%= span.notes %></td>
-      <td><%= link_to 'Show', span %></td>
-      <td><%= link_to 'Edit', edit_span_path(span) %></td>
+      <td><%= link_to t(:show), span %></td>
+      <td><%= link_to t(:edit), edit_span_path(span) %></td>
       <td><%= link_to 'Destroy', span, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
     <% end %>

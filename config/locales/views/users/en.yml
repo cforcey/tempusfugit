@@ -18,9 +18,10 @@
 #
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
+
 en:
-  edit: "Edit"
-  submit: "Submit"
-  show: "Show"
-  back: "Back"
-      
+  views:
+    users:
+      change_password: "Change Password"
+      update_user: "Update User"
+      create_user: "Create User"

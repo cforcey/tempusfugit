@@ -7,11 +7,11 @@
 	<%= f.input :organization %>
 	<%= f.input :hourly_rate %>
 	<%= f.input :message %>
+	<%= f.collection_check_boxes :roles, valid_roles, :first, :last  %>
 	<% if @user.new_record? -%>
 	<%= f.input :password, :required => true %>
 	<%= f.input :password_confirmation, :required => true %>
 	<% end -%>
-	<%= f.collection_check_boxes :roles, valid_roles, :first, :last  %>
 </div>
 <div class="form-actions">
 	<%= f.button :submit %>
