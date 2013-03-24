@@ -17,6 +17,8 @@ feature "User Management" do
       fill_in 'Message', :with => 'New_invoice_message'
       fill_in 'Organization', :with => 'New_organization'
       check 'Timekeeper'
+      fill_in 'user_password', :with => 'new_secret!!!'
+      fill_in 'user_password_confirmation', :with => 'new_secret!!!'
     end
     click_button 'Update User'
     page.should have_content 'User was successfully created.'
@@ -29,9 +31,9 @@ feature "User Management" do
     page.should have_content 'Timekeeper'
   end
 
-  scenario "Edit user profile" do
+  scenario "Edit user as admin" do
     visit root_path
-    click_link 'Profile'
+    click_link 'Users'
     click_link 'Edit'
     within("form.simple_form") do
       fill_in 'First', :with => 'New_first_name'
@@ -51,29 +53,27 @@ feature "User Management" do
     page.should have_content 'Timekeeper'
   end
 
-  scenario "Change user password successfully" do
+  scenario "Change own password successfully as admin" do
     visit root_path
     click_link 'Profile'
-    click_link 'Change Password'
     within("form.simple_form") do
       fill_in 'user_current_password', :with => 'secret!!!'
       fill_in 'user_password', :with => 'new_secret'
       fill_in 'user_password_confirmation', :with => 'new_secret'
     end
-    click_button 'Update Password'
+    click_button 'Update Profile'
     page.should have_content 'You updated your account successfully.'
   end
 
-  scenario "Change user password unsuccessfully because of bad current password" do
+  scenario "Change own password unsuccessfully because of bad current password" do
     visit root_path
     click_link 'Profile'
-    click_link 'Change Password'
     within("form.simple_form") do
       fill_in 'user_current_password', :with => 'bad_password'
       fill_in 'user_password', :with => 'new_secret'
       fill_in 'user_password_confirmation', :with => 'new_secret'
     end
-    click_button 'Update Password'
+    click_button 'Update Profile'
     page.should have_content 'Current passwordis invalid'
   end
 
