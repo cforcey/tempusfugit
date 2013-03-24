@@ -1,25 +1,56 @@
 <!-- Main hero unit for a primary marketing message or call to action -->
-  <div class="hero-unit">
-    <h1>Hello, world!</h1>
-    <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-    <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-  </div>
-
-  <!-- Example row of columns -->
+<div class="hero-unit" xmlns="http://www.w3.org/1999/html">
   <div class="row">
-    <div class="span4">
-      <h2>Heading</h2>
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-      <p><a class="btn" href="#">View details &raquo;</a></p>
+    <div class="span7">
+      <h1>Welcome!</h1>
+
+      <p><em>Tempus Fugit</em> is an online answer to the question:
+        <strong>Where did my day go?</strong></p>
+
+      <p>It helps consultants pay the bills, students stay on top of
+        assignments, and all of us to build productive habits as we go about our days.</p>
+
+      <p>
+        <a href="/tour" class="btn btn-primary btn-large">Learn more &raquo;</a>
+        <% unless user_signed_in? -%>
+        <a href="<%= new_user_registration_path %>" class="btn btn-primary btn-large">Sign Up &raquo;</a>
+        <% end -%>
+      </p>
     </div>
-    <div class="span4">
-      <h2>Heading</h2>
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-      <p><a class="btn" href="#">View details &raquo;</a></p>
-   </div>
-    <div class="span4">
-      <h2>Heading</h2>
-      <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-      <p><a class="btn" href="#">View details &raquo;</a></p>
+
+    <div class="span3">
+      <%= image_tag 'cute_ball_time_icon.png', :width => '300px' %>
     </div>
   </div>
+</div>
+
+<!-- Example row of columns -->
+<div class="row">
+  <div class="span4">
+    <h2><%= t(:time_spans) %></h2>
+
+    <p>Every time you focus on a task for a period of time, create a <strong>time span</strong> to record the name,
+      description, start, end, and anything else you want to record about that effort. Later on, you can review the
+      time spans for a particular day, week, month, year, or whatever.</p>
+
+    <p><a class="btn" href="/tour#spans">View details &raquo;</a></p>
+  </div>
+  <div class="span4">
+    <h2><%= t(:projects) %></h2>
+
+    <p>Ready to take your focus management up a notch? Enter some projects and start categorizing your time spans by
+      project. When it comes time to bill someone or review how much work a particular project required, you will be all
+      set.</p>
+
+    <p><a class="btn" href="/tour#projects">View details &raquo;</a></p>
+  </div>
+  <div class="span4">
+    <h2><%= t(:clients) %></h2>
+
+    <p>Want to share your progress with a special someone? Create a client and associate them with a project so they
+      can log in and see your time spans piling up in real time. Better yet, for paying work, email them an invoice
+      for the work completed in any particular period.</p>
+
+    <p><a class="btn" href="/tour#clients">View details &raquo;</a></p>
+  </div>
+</div>

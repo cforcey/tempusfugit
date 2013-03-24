@@ -16,7 +16,7 @@
 				</ul>
 				<ul class="nav pull-right">
 					<%= active_link_to t('views.navigation.about'), about_path, :wrap_tag => :li %>
-					<%= active_link_to t('views.navigation.contact'), contact_path, :wrap_tag => :li %>
+                    <%= active_link_to t('views.navigation.tour'), tour_path, :wrap_tag => :li %>
 					<% if user_signed_in? %>
 					<%= active_link_to  t('views.navigation.profile'), edit_user_registration_path, :wrap_tag => :li %>
 					<%= active_link_to  t('views.navigation.sign_out'), destroy_user_session_path, :method => :delete, :wrap_tag => :li %>
