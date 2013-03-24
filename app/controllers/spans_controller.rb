@@ -56,7 +56,7 @@ class SpansController < ApplicationController
   def destroy
     @span.destroy
     respond_to do |format|
-      format.html { redirect_to spans_url }
+      format.html { redirect_to spans_url, :notice => 'Span was successfully deleted.' }
       format.json { head :no_content }
     end
   end

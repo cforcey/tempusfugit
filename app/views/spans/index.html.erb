@@ -1,6 +1,6 @@
 <h1>Listing spans</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
@@ -11,28 +11,23 @@
       <th>End at</th>
       <th>Billable</th>
       <th>Invoiced at</th>
-      <th>Notes</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Actions</th>
     </tr>
   </thead>
 
   <tbody>
     <% @spans.each do |span| %>
     <tr>
-      <td><%= span.name %></td>
-      <td><%= span.description %></td>
-      <td><%= span.user_id %></td>
-      <td><%= span.project_id %></td>
+      <td><%= truncate span.name %></td>
+      <td><%= truncate span.description %></td>
+      <td><%= link_to_if(span.project.try(:name).present?, truncate(span.project.try(:name)), span.project) %></td>
       <td><%= span.start_at %></td>
       <td><%= span.end_at %></td>
       <td><%= span.billable %></td>
       <td><%= span.invoiced_at %></td>
-      <td><%= span.notes %></td>
-      <td><%= link_to t(:show), span %></td>
-      <td><%= link_to t(:edit), edit_span_path(span) %></td>
-      <td><%= link_to 'Destroy', span, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to content_tag(:i, nil, class: 'icon-eye-open'), span, id: "span_show_#{span.id}" %>
+        <%= link_to content_tag(:i, nil, class: 'icon-edit'), edit_span_path(span), id: "span_edit_#{span.id}"  %>
+        <%= link_to content_tag(:i, nil, class: 'icon-trash'), span, method: :delete, id: "span_destroy_#{span.id}", data: { confirm: 'Are you sure?' } %></td>
     </tr>
     <% end %>
   </tbody>

@@ -1,30 +1,35 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
-	<div class="navbar-inner">
-		<div class="container">
-			<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="brand" href="/"><%= t('views.navigation.site_title') %></a>
-			<div class="nav-collapse collapse">
-				<ul class="nav">
-					<% if user_signed_in? && current_user.has_role?('admin') %>
-					<%= active_link_to  t('views.navigation.users'), admin_users_path, :wrap_tag => :li %>
-					<%= active_link_to  t('views.navigation.reports'), '#', :wrap_tag => :li %>
-					<% end -%>
-				</ul>
-				<ul class="nav pull-right">
-					<%= active_link_to t('views.navigation.about'), about_path, :wrap_tag => :li %>
-                    <%= active_link_to t('views.navigation.tour'), tour_path, :wrap_tag => :li %>
-					<% if user_signed_in? %>
-					<%= active_link_to  t('views.navigation.profile'), edit_user_registration_path, :wrap_tag => :li %>
-					<%= active_link_to  t('views.navigation.sign_out'), destroy_user_session_path, :method => :delete, :wrap_tag => :li %>
-					<% else -%>
-					<%= active_link_to  t('views.navigation.sign_in'), new_user_session_path, :wrap_tag => :li %>
-					<% end -%>
-				</ul>
-			</div><!--/.nav-collapse -->
-		</div>
-	</div>
+  <div class="navbar-inner">
+    <div class="container">
+      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="brand" href="/"><%= t('views.navigation.site_title') %></a>
+
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <% if user_signed_in? %>
+              <%= active_link_to t('views.navigation.spans'), spans_path, :wrap_tag => :li %>
+              <% if current_user.has_role?('admin') %>
+                  <%= active_link_to t('views.navigation.reports'), '#', :wrap_tag => :li %>
+                  <%= active_link_to t('views.navigation.users'), admin_users_path, :wrap_tag => :li %>
+              <% end -%>
+          <% end -%>
+        </ul>
+        <ul class="nav pull-right">
+          <%= active_link_to t('views.navigation.about'), about_path, :wrap_tag => :li %>
+          <%= active_link_to t('views.navigation.tour'), tour_path, :wrap_tag => :li %>
+          <% if user_signed_in? %>
+              <%= active_link_to t('views.navigation.profile'), edit_user_registration_path, :wrap_tag => :li %>
+              <%= active_link_to t('views.navigation.sign_out'), destroy_user_session_path, :method => :delete, :wrap_tag => :li %>
+          <% else -%>
+              <%= active_link_to t('views.navigation.sign_in'), new_user_session_path, :wrap_tag => :li %>
+          <% end -%>
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+  </div>
 </div>
