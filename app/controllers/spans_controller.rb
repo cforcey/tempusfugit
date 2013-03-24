@@ -1,10 +1,13 @@
 class SpansController < ApplicationController
+
+  before_filter :authenticate_user!
+
   before_action :set_span, only: [:show, :edit, :update, :destroy]
 
   # GET /spans
   # GET /spans.json
   def index
-    @spans = Span.all
+    @spans = current_user.spans
   end
 
   # GET /spans/1
@@ -64,7 +67,8 @@ class SpansController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_span
-      @span = Span.find(params[:id])
+      # spans should always be scoped to the current user
+      @span = current_user.spans.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
