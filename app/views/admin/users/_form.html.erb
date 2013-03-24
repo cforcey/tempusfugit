@@ -1,0 +1,18 @@
+<%= simple_form_for([:admin, @user], html: {class: 'form-horizontal' }) do |f| %>
+	<%= f.input :email, :required => true, :autofocus => true %>
+	<%= f.input :first %>
+	<%= f.input :middle %>
+	<%= f.input :last %>
+	<%= f.input :organization %>
+	<%= f.input :hourly_rate %>
+	<%= f.input :message %>
+	<%= f.input :roles, :collection => valid_roles, :label_method => :last, :value_method => :first, :as => :check_boxes, :item_wrapper_class => 'inline'  %>
+	<% if @user.new_record? -%>
+	<%= f.input :password, :required => true %>
+	<%= f.input :password_confirmation, :required => true %>
+	<% end -%>
+    <div class="form-actions">
+      <%= f.button :submit, t('views.users.update_user') %>
+      <%= link_to t(:cancel), :back %>
+    </div>
+<% end %>

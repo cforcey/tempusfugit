@@ -10,7 +10,7 @@
 			<div class="nav-collapse collapse">
 				<ul class="nav">
 					<% if user_signed_in? && current_user.has_role?('admin') %>
-					<%= active_link_to  t('views.navigation.users'), users_path, :wrap_tag => :li %>
+					<%= active_link_to  t('views.navigation.users'), admin_users_path, :wrap_tag => :li %>
 					<%= active_link_to  t('views.navigation.reports'), '#', :wrap_tag => :li %>
 					<% end -%>
 				</ul>
@@ -18,7 +18,7 @@
 					<%= active_link_to t('views.navigation.about'), about_path, :wrap_tag => :li %>
 					<%= active_link_to t('views.navigation.contact'), contact_path, :wrap_tag => :li %>
 					<% if user_signed_in? %>
-					<%= active_link_to  t('views.navigation.profile'), edit_user_path(current_user), :wrap_tag => :li %>
+					<%= active_link_to  t('views.navigation.profile'), edit_user_registration_path, :wrap_tag => :li %>
 					<%= active_link_to  t('views.navigation.sign_out'), destroy_user_session_path, :method => :delete, :wrap_tag => :li %>
 					<% else -%>
 					<%= active_link_to  t('views.navigation.sign_in'), new_user_session_path, :wrap_tag => :li %>

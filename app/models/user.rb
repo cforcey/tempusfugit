@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :registerable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, 
@@ -25,5 +25,10 @@ class User < ActiveRecord::Base
   # a user has projects and, through them, clients
   has_many :projects, :dependent => :destroy
   has_many :clients, :through => :projects
+
+  # pretty printing of roles from symbol hash
+  def roles_list
+    return roles.map { |k| k.to_s.humanize }.sort.to_sentence
+  end
   
 end

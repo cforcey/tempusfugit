@@ -1,7 +1,7 @@
-class UsersController < ApplicationController
+class Admin::UsersController < Admin::AdminController
   
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :set_roles, only: [:edit, :update]
+  before_action :set_roles, only: [:edit, :update, :new, :create]
 
   # GET /users
   # GET /users.json
@@ -14,6 +14,15 @@ class UsersController < ApplicationController
   def show
   end
 
+  # GET /users/new
+  def new
+    @user = User.new
+  end
+
+  # GET /users/1/edit
+  def edit
+  end
+
   # POST /users
   # POST /users.json
   def create
@@ -21,7 +30,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to admin_user_path(@user), notice: 'User was successfully created.' }
         format.json { render action: 'show', status: :created, location: @user }
       else
         format.html { render action: 'new' }
@@ -35,7 +44,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to admin_user_path(@user), notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -49,7 +58,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url }
+      format.html { redirect_to admin_users_url }
       format.json { head :no_content }
     end
   end

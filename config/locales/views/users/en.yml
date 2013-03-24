@@ -23,5 +23,8 @@ en:
   views:
     users:
       change_password: "Change Password"
+      update_password: "Update Password"
       update_user: "Update User"
       create_user: "Create User"
+      update_profile: "Update Profile"
+      sign_up: "Sign Up"

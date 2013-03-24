@@ -1,29 +1,25 @@
 Tempusfugit::Application.routes.draw do
-  
-  resources :clients
 
-  resources :projects
+  # routing macros from devise for our user class
+  devise_for :users
 
-  resources :spans
-
-  get "users/index"
-  get "users/show"
-  get "users/edit"
-  get "users/create"
-  get "users/new"
-  get "users/update"
-  get "users/delete"
   # static pages handled by a single controller pages
   get "welcome" => 'pages#welcome', as: :welcome
   get "about" => 'pages#about', as: :about
   get "contact" => 'pages#contact', as: :contact
   get "faq" => 'pages#faq', as: :faq
-  
-  # routing macros from devise for our user class
-  devise_for :users
-  
-  # resource routes for users
+
+  # resource routes for major models
   resources :users
+  resources :clients
+  resources :projects
+  resources :spans
+
+  # because devise allows users to manage some things on their own
+  # I wand to put users in a special name space for administration
+  namespace :admin do
+    resources :users # Have the admin manage them here.
+  end
 
   # You can have the root of your site routed with "root"
   root to: 'pages#welcome'
