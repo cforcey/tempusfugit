@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130323201810) do
+ActiveRecord::Schema.define(version: 20130324150237) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,8 +87,10 @@ ActiveRecord::Schema.define(version: 20130323201810) do
     t.string   "organization"
     t.integer  "hourly_rate",            default: 0,  null: false
     t.string   "message"
+    t.string   "authentication_token"
   end
 
+  add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["last", "first", "middle"], name: "index_users_on_last_and_first_and_middle"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

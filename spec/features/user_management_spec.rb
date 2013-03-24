@@ -1,8 +1,17 @@
 require 'spec_helper'
 
 feature "User Management" do
+
   background do
-    sign_in_with('sample@example.com','secret!!!')
+    @admin = create(:user, :email => 'sample@example.com', :password => 'secret!!!' )
+    sign_in_with_user(@admin)
+  end
+
+  scenario "See a list of users" do
+    visit root_path
+    click_link 'Users'
+    page.should have_content 'Listing users'
+    page.should have_content 'sample@example.com'
   end
 
   scenario "Create a new user" do
@@ -34,7 +43,7 @@ feature "User Management" do
   scenario "Edit user as admin" do
     visit root_path
     click_link 'Users'
-    click_link 'Edit'
+    click_link "user_edit_#{@admin.id}"
     within("form.simple_form") do
       fill_in 'First', :with => 'New_first_name'
       fill_in 'Last', :with => 'New_last_name'
@@ -51,6 +60,16 @@ feature "User Management" do
     page.should have_content 'New_invoice_message'
     page.should have_content 'New_organization'
     page.should have_content 'Timekeeper'
+  end
+
+  scenario "Destroy a user" do
+    @other_user = create(:user)
+    visit root_path
+    click_link 'Users'
+    click_link "user_destroy_#{@other_user.id}"
+    page.should have_content 'Listing users'
+    page.should_not have_content @other_user.email
+    page.should have_content 'User was successfully deleted.'
   end
 
   scenario "Change own password successfully as admin" do

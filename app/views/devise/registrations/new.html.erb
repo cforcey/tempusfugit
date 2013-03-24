@@ -2,7 +2,15 @@
 
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-horizontal'}) do |f| %>
 
-    <%=  render :partial => 'form_fields', :locals => {:resource => resource, :f => f } %>
+    <%= f.input :email, :required => true, :autofocus => true %>
+    <%= f.input :first %>
+    <%= f.input :middle %>
+    <%= f.input :last %>
+    <%= f.input :organization %>
+    <%= f.input :hourly_rate %>
+    <%= f.input :message %>
+    <%= f.input :password, :required => true %>
+    <%= f.input :password_confirmation, :required => true %>
 
     <div class="form-actions">
       <%= f.button :submit, "Sign up" %>

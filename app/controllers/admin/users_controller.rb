@@ -56,10 +56,16 @@ class Admin::UsersController < Admin::AdminController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    @user.current_user = current_user
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to admin_users_url }
-      format.json { head :no_content }
+        if @user.try(:errors).try('blank?')
+          format.html { redirect_to admin_users_url, :notice => 'User was successfully deleted.' }
+          format.json { head :no_content }
+        else
+          format.html { redirect_to admin_users_url, :alert => @user.errors.full_messages.to_sentence }
+          format.json { render json: @user.errors, status: :forbidden }
+        end
     end
   end
 
