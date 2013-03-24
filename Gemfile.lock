@@ -9,6 +9,14 @@ GIT
       railties (~> 4.0.0.beta)
       warden (~> 1.2.1)
 
+GIT
+  remote: git://github.com/plataformatec/simple_form.git
+  revision: 7d0eeea917f4508e2df8f70b2b4b58ee808b4541
+  specs:
+    simple_form (3.0.0.beta1)
+      actionpack (>= 4.0.0.beta, < 4.1)
+      activemodel (>= 4.0.0.beta, < 4.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -148,7 +156,6 @@ GEM
       multi_json (~> 1.0)
       rubyzip
       websocket (~> 1.0.4)
-    simple_form (1.4.1)
     sprockets (2.9.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -202,6 +209,6 @@ DEPENDENCIES
   rails (= 4.0.0.beta1)
   rspec-rails
   sass-rails (~> 4.0.0.beta1)
-  simple_form
+  simple_form!
   uglifier (>= 1.0.3)
   unicorn

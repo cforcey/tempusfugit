@@ -48,7 +48,7 @@ gem 'unicorn'
 
 ####################### gems needed in all environments
 
-# authentication gem
+# authentication gem, temporarily from git until r4 release
 gem 'devise', :git => 'git://github.com/plataformatec/devise.git', :branch => 'rails4'
 
 # temporary adjustment for devise reliance on attribute accessible
@@ -60,8 +60,8 @@ gem 'bootstrap-sass', '~> 2.3.1.0'
 # fontawesome for font based icons compatible with bootstrap
 gem 'font-awesome-sass-rails'
 
-# simple_form to make form generation easier and better
-gem 'simple_form'
+# simple_form to make form generation easier and better, temporarily from git until r4 release
+gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
 
 # abilities and permissions (no need for more complex roles yet)
 gem 'cancan'
