@@ -89,6 +89,8 @@ group :development, :test do
   gem 'rspec-rails'
   # factory girl can be handy in development too for generators
   gem 'factory_girl_rails'
+  # a nice random data generator useful for db:seeds as well
+  gem 'random_data'
 end  
 
 ####################### gem needed just for testing

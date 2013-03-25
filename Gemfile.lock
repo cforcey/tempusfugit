@@ -150,6 +150,7 @@ GEM
       thor (>= 0.17.0, < 2.0)
     raindrops (0.10.0)
     rake (10.0.3)
+    random_data (1.6.0)
     rdoc (3.12.2)
       json (~> 1.4)
     role_model (0.8.1)
@@ -238,6 +239,7 @@ DEPENDENCIES
   pg
   protected_attributes
   rails (= 4.0.0.beta1)
+  random_data
   rspec-rails
   sass-rails (~> 4.0.0.beta1)
   simple_form!
