@@ -9,7 +9,7 @@ class ClientsController < ApplicationController
   # GET /clients
   # GET /clients.json
   def index
-    @clients = current_user.clients.all
+    @clients = current_user.clients
   end
 
   # GET /clients/1

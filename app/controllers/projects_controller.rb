@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = current_user.projects.all
+    @projects = current_user.projects.order_by_name
   end
 
   # GET /projects/1

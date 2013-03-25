@@ -71,6 +71,10 @@ describe Span do
     it 'should return only entries excluding a span_id' do
       Span.excluding(@span1.id).count.should < Span.count
     end
+
+    it 'should return only entries for a particular user id' do
+      Span.for_user_id(@span1.user_id).count.should == 1
+    end
   end
 
 end

@@ -5,7 +5,7 @@
     <tr>
       <th>Name</th>
       <th>Description</th>
-      <th>User</th>
+      <th>Contact</th>
       <th>Hourly rate</th>
       <th>Actions</th>
     </tr>
@@ -16,9 +16,8 @@
     <tr>
       <td><%= client.name %></td>
       <td><%= client.description %></td>
-      <td><%= client.user_id %></td>
+      <td><%= client.contact.name if client.contact.present? %></td>
       <td><%= client.hourly_rate %></td>
-      <td><%= client.notes %></td>
       <td><%= link_to content_tag(:i, nil, class: 'icon-eye-open'), client, id: "client_show_#{client.id}" %>
         <%= link_to content_tag(:i, nil, class: 'icon-edit'), edit_client_path(client), id: "client_edit_#{client.id}" %>
         <%= link_to content_tag(:i, nil, class: 'icon-trash'), client, method: :delete, id: "client_destroy_#{client.id}", data: {confirm: 'Are you sure?'} %></td>

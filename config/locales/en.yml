@@ -140,6 +140,8 @@ en:
       current_user_unknown: cannot determine the current user
       current_user_cannot_delete_self: cannot delete own user account
       end_before_start: ends before it starts
+      cannot_delete_last: cannot delete last
+      cannot_delete_with_spans: 'reassign spans before deleting'
       too_long:
         one: is too long (maximum is 1 character)
         other: is too long (maximum is %{count} characters)
