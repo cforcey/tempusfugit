@@ -86,7 +86,7 @@ class SpansController < ApplicationController
     end
 
     def set_spans
-      @spans = current_user.spans.scoped.order_by_start_at
+      @spans = current_user.spans.order_by_start_at
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

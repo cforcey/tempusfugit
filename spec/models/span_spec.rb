@@ -39,6 +39,11 @@ describe Span do
         @new_span.should_not be_valid
       end
 
+      it 'should not accept a span whose start is after its end' do
+        @span.update(start_input: '10:45am', end_input: '10:15am')
+        @span.should_not be_valid
+      end
+
     end
   end
 

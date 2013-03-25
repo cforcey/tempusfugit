@@ -12,7 +12,11 @@ class Span < ActiveRecord::Base
   # make sure the hourly rate is an integer
   validates :hourly_rate, presence: true, numericality: {only_integer: true}
 
+  # special validation to avoid overlap
   validate :time_span_unique
+
+  # basic validation to avoid end being before start date
+  validate :validate_start_before_end
 
   # handle blank, extra long, or trailing spaces
   normalize_attributes :name, :description, :with => [:strip, :blank, :squish, {:truncate => {:length => 255}}]
@@ -30,10 +34,13 @@ class Span < ActiveRecord::Base
   # Order scope by name
   scope :order_by_name, -> { order('spans.name ASC') }
 
-  # Find spans between two time values
+  # Find spans between two time values by excluding the two values that do not overlap
+  # in other words -- completely before or completely after, allowing them to touch
+  # and start adn stor at exactly the same time
   scope :occurs_between, lambda { |start_time, end_time|
-    where('spans.start_at >= :start OR spans.start_at <= :end OR spans.end_at >= :start OR spans.end_at <= :end', start: start_time, end: end_time)
+    where('(spans.start_at < :end) AND (spans.end_at > :start)', start: start_time, end: end_time)
   }
+
 
   # Returns all spans except for span_id
   scope :excluding, lambda { |span_id|
@@ -66,9 +73,21 @@ class Span < ActiveRecord::Base
       spans = Span.for_user_id(self.user_id).occurs_between(self.start_at, self.end_at)
       spans = spans.excluding(self.id) unless self.new_record?
       if spans.count > 0
-          self.errors.add(:start_label, I18n.translate('errors.messages.overlaps'))
-          self.errors.add(:end_label, I18n.translate('errors.messages.overlaps'))
+          # flag errors also for the most common input mechanism so form shows it
+          self.errors.add(:start_at, I18n.translate('errors.messages.overlaps'))
+          self.errors.add(:end_at, I18n.translate('errors.messages.overlaps'))
+          self.errors.add(:start_input, I18n.translate('errors.messages.overlaps'))
+          self.errors.add(:end_input, I18n.translate('errors.messages.overlaps'))
       end
+    end
+  end
+
+  # reject the record if the end date is before the start date
+  def validate_start_before_end
+    if self.end_at && self.start_at
+      # flag errors also for the most common input mechanism so form shows it
+      errors.add(:end_at, I18n.translate('errors.messages.end_before_start')) if self.end_at < self.start_at
+      errors.add(:end_input, I18n.translate('errors.messages.end_before_start')) if self.end_at < self.start_at
     end
   end
 
