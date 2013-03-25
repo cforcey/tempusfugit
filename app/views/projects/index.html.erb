@@ -1,6 +1,6 @@
 <h1><%=  @title = t('projects') %></h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
@@ -8,10 +8,7 @@
       <th>User</th>
       <th>Client</th>
       <th>Hourly rate</th>
-      <th>Notes</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Actions</th>
     </tr>
   </thead>
 
@@ -23,10 +20,9 @@
       <td><%= project.user_id %></td>
       <td><%= project.client_id %></td>
       <td><%= project.hourly_rate %></td>
-      <td><%= project.notes %></td>
-      <td><%= link_to t(:show), project %></td>
-      <td><%= link_to t(:edit), edit_project_path(project) %></td>
-      <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to content_tag(:i, nil, class: 'icon-eye-open'), project, id: "project_show_#{project.id}" %>
+      <%= link_to content_tag(:i, nil, class: 'icon-edit'), edit_project_path(project), id: "project_edit_#{project.id}" %>
+      <%= link_to content_tag(:i, nil, class: 'icon-trash'), project, method: :delete, id: "project_destroy_#{project.id}", data: {confirm: 'Are you sure?'} %></td>
     </tr>
     <% end %>
   </tbody>

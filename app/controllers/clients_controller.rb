@@ -1,10 +1,15 @@
 class ClientsController < ApplicationController
+
+  authorize_resource
+
+  before_filter :authenticate_user!
+
   before_action :set_client, only: [:show, :edit, :update, :destroy]
 
   # GET /clients
   # GET /clients.json
   def index
-    @clients = Client.all
+    @clients = current_user.clients.all
   end
 
   # GET /clients/1
@@ -64,7 +69,7 @@ class ClientsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_client
-      @client = Client.find(params[:id])
+      @client = current_user.clients.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

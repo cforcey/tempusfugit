@@ -6,10 +6,9 @@
     <% end %>
 
 
-
     <div class="well">
       <h3>Personal Information</h3>
-      <%= f.input :email, :required => true %>
+      <%= f.input :email, :required => true, :autofocus => true %>
       <%= f.input :first %>
       <%= f.input :middle %>
       <%= f.input :last %>
@@ -18,17 +17,20 @@
       <%= f.input :message %>
       <%= f.input :time_zone, priority: /US/ %>
     </div>
+
     <div class="well">
       <h3>Change Password</h3>
-      <p>Hint: Leave blank if you do not want to change your current one.</p>
+      <p>Hint: Leave new password blank if you do not want to change your current one.</p>
       <%= f.input :password, :autocomplete => 'off', :required => false %>
       <%= f.input :password_confirmation, :autocomplete => 'off', :required => false %>
     </div>
+
     <div class="well">
-      <h3>Confirm Current Password</h3>
-      <p>Hint: We want to be sure this is you making these changes.</p>
-      <%= f.input :current_password, :hint => 'we need your current password to confirm your changes', :required => true, :autofocus => true %>
+      <h3>Please Confirm Current Password</h3>
+      <p>Hint: Saving changes to your profile requires a bit of extra security.</p>
+      <%= f.input :current_password, :required => true %>
     </div>
+
     <div class="form-actions">
       <%= f.button :submit, t('views.users.update_profile') %>
       <%= link_to t(:cancel), :back %>
