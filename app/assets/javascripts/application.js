@@ -15,4 +15,4 @@
 //= require bootstrap
 //= require modernizr-latest
 //= require jquery.timeago
-//= require_tree .
+//= require shared.js

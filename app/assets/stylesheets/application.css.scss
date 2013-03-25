@@ -13,6 +13,17 @@
  */
 
 /*
+* Make room for the permanent top menu
+* has to be declared before responsive design
+* so that it can push it back up on an ipad
+* or smaller screen.
+*/
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+
+/*
 * Sass variables do not compile well with the default sprockets require tree
 * so we use the @import built into sass for smart importing
 */
@@ -25,10 +36,3 @@
 * Overrides common to all pages
 */
 
-/*
-* Make room for the permanent top menu
-*/
-body {
-  padding-top: 60px;
-  padding-bottom: 40px;
-}

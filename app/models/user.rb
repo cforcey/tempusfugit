@@ -8,7 +8,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, 
     :roles, :first, :middle, :last, :organization, :message, :hourly_rate, :time_zone
   
-  # Canard defines roles in order from least to most powerful
+  # Canard defines roles in order from least to most powerful, testing for db connection
+  # to avoid a timeout during assets precompile on Heroku when the db is not yet set
   acts_as_user :roles => [:timekeeper, :admin] if ActiveRecord::Base.connected?
 
   # validate that first and last names are provided and at least one role be set

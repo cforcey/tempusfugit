@@ -1,5 +1,6 @@
 class Admin::UsersController < Admin::AdminController
-  
+  authorize_resource :user, :parent => false
+
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :set_roles, only: [:edit, :update, :new, :create]
 

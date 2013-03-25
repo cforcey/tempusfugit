@@ -13,7 +13,9 @@
 
       <p>
         <a href="/tour" class="btn btn-primary btn-large">Learn more &raquo;</a>
-        <% unless user_signed_in? -%>
+        <% if user_signed_in? -%>
+            <a href="<%= spans_path %>" class="btn btn-primary btn-large">Track Your Focus Time &raquo;</a>
+        <% else -%>
         <a href="<%= new_user_registration_path %>" class="btn btn-primary btn-large">Sign Up &raquo;</a>
         <% end -%>
       </p>

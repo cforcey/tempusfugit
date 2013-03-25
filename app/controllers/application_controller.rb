@@ -7,6 +7,12 @@ class ApplicationController < ActionController::Base
   # users timezone if they are logged in, otherwise it is the default
   around_filter :user_time_zone, if: :current_user
 
+  # cancan authorization error trapping so they see a nice message
+  # and get redirected to the home page
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
+
   private
 
   # for each request, we want to be sure the application time zone is
