@@ -66,8 +66,8 @@ class Span < ActiveRecord::Base
       spans = Span.for_user_id(self.user_id).occurs_between(self.start_at, self.end_at)
       spans = spans.excluding(self.id) unless self.new_record?
       if spans.count > 0
-          self.errors.add(:start_at, I18n.translate('errors.messages.overlaps'))
-          self.errors.add(:end_at, I18n.translate('errors.messages.overlaps'))
+          self.errors.add(:start_label, I18n.translate('errors.messages.overlaps'))
+          self.errors.add(:end_label, I18n.translate('errors.messages.overlaps'))
       end
     end
   end

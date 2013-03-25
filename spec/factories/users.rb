@@ -8,7 +8,7 @@ FactoryGirl.define do
     hourly_rate 45
     password 'secret!!!'
     password_confirmation { password }
-    roles ['admin']
+    roles %w(admin)
     time_zone 'Eastern Time (US & Canada)'
   end
 end

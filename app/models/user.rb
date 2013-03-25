@@ -76,7 +76,7 @@ class User < ActiveRecord::Base
       errors.add :base, I18n.translate('errors.messages.current_user_unknown')
       false
     elsif passed_current_user.id == self.id
-      errors.add :base, I18n.translate('current_user_cannot_delete_self')
+      errors.add :base, I18n.translate('errors.messages.current_user_cannot_delete_self')
       false
     end
   end

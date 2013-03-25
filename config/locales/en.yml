@@ -115,7 +115,7 @@ en:
       month: Month
       second: Seconds
       year: Year
-  errors: &errors
+  errors:
     format: ! '%{attribute} %{message}'
     messages:
       accepted: must be accepted
@@ -137,7 +137,7 @@ en:
       record_invalid: ! 'Validation failed: %{errors}'
       taken: has already been taken
       overlaps: must not overlap with other time spans
-      current_user_unkown: cannot determine the current user.
+      current_user_unknown: cannot determine the current user.
       current_user_cannot_delete_self: cannot delete own user account.
       too_long:
         one: is too long (maximum is 1 character)
@@ -220,10 +220,3 @@ en:
       short: ! '%d %b %I:%M %p'
       time_only: ! '%I:%M %p'
     pm: pm
-  # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      <<: *errors
-  activerecord:
-    errors:
-      <<: *errors
