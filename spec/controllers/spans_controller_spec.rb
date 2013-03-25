@@ -24,7 +24,7 @@ describe SpansController do
   # Span. As you add validations to Span, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    { "name" => "MyString" }
+    { 'name' => 'MyString'}
   end
 
   # This should return the minimal set of values that should be in the session
@@ -34,105 +34,105 @@ describe SpansController do
     {}
   end
 
-  describe "GET index" do
-    it "assigns all spans as @spans" do
+  describe 'GET index' do
+    it 'assigns all spans as @spans' do
       span = Span.create! valid_attributes
       get :index, {}, valid_session
       assigns(:spans).should eq([span])
     end
   end
 
-  describe "GET show" do
-    it "assigns the requested span as @span" do
+  describe 'GET show' do
+    it 'assigns the requested span as @span' do
       span = Span.create! valid_attributes
       get :show, {:id => span.to_param}, valid_session
       assigns(:span).should eq(span)
     end
   end
 
-  describe "GET new" do
-    it "assigns a new span as @span" do
+  describe 'GET new' do
+    it 'assigns a new span as @span' do
       get :new, {}, valid_session
       assigns(:span).should be_a_new(Span)
     end
   end
 
-  describe "GET edit" do
-    it "assigns the requested span as @span" do
+  describe 'GET edit' do
+    it 'assigns the requested span as @span' do
       span = Span.create! valid_attributes
       get :edit, {:id => span.to_param}, valid_session
       assigns(:span).should eq(span)
     end
   end
 
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new Span" do
+  describe 'POST create' do
+    describe 'with valid params' do
+      it 'creates a new Span' do
         expect {
           post :create, {:span => valid_attributes}, valid_session
         }.to change(Span, :count).by(1)
       end
 
-      it "assigns a newly created span as @span" do
+      it 'assigns a newly created span as @span' do
         post :create, {:span => valid_attributes}, valid_session
         assigns(:span).should be_a(Span)
         assigns(:span).should be_persisted
       end
 
-      it "redirects to the created span" do
+      it 'redirects to the created span' do
         post :create, {:span => valid_attributes}, valid_session
         response.should redirect_to(Span.last)
       end
     end
 
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved span as @span" do
+    describe 'with invalid params' do
+      it 'assigns a newly created but unsaved span as @span' do
         # Trigger the behavior that occurs when invalid params are submitted
         Span.any_instance.stub(:save).and_return(false)
-        post :create, {:span => { "name" => "invalid value" }}, valid_session
+        post :create, {:span => { 'name' => 'invalid value'}}, valid_session
         assigns(:span).should be_a_new(Span)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Span.any_instance.stub(:save).and_return(false)
-        post :create, {:span => { "name" => "invalid value" }}, valid_session
-        response.should render_template("new")
+        post :create, {:span => { 'name' => 'invalid value'}}, valid_session
+        response.should render_template('new')
       end
     end
   end
 
-  describe "PUT update" do
-    describe "with valid params" do
-      it "updates the requested span" do
+  describe 'PUT update' do
+    describe 'with valid params' do
+      it 'updates the requested span' do
         span = Span.create! valid_attributes
         # Assuming there are no other spans in the database, this
         # specifies that the Span created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Span.any_instance.should_receive(:update).with({ "name" => "MyString" })
-        put :update, {:id => span.to_param, :span => { "name" => "MyString" }}, valid_session
+        Span.any_instance.should_receive(:update).with({ 'name' => 'MyString'})
+        put :update, {:id => span.to_param, :span => { 'name' => 'MyString'}}, valid_session
       end
 
-      it "assigns the requested span as @span" do
+      it 'assigns the requested span as @span' do
         span = Span.create! valid_attributes
         put :update, {:id => span.to_param, :span => valid_attributes}, valid_session
         assigns(:span).should eq(span)
       end
 
-      it "redirects to the span" do
+      it 'redirects to the span' do
         span = Span.create! valid_attributes
         put :update, {:id => span.to_param, :span => valid_attributes}, valid_session
         response.should redirect_to(span)
       end
     end
 
-    describe "with invalid params" do
-      it "assigns the span as @span" do
+    describe 'with invalid params' do
+      it 'assigns the span as @span' do
         span = Span.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Span.any_instance.stub(:save).and_return(false)
-        put :update, {:id => span.to_param, :span => { "name" => "invalid value" }}, valid_session
+        put :update, {:id => span.to_param, :span => { 'name' => 'invalid value'}}, valid_session
         assigns(:span).should eq(span)
       end
 
@@ -140,21 +140,21 @@ describe SpansController do
         span = Span.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Span.any_instance.stub(:save).and_return(false)
-        put :update, {:id => span.to_param, :span => { "name" => "invalid value" }}, valid_session
-        response.should render_template("edit")
+        put :update, {:id => span.to_param, :span => { 'name' => 'invalid value'}}, valid_session
+        response.should render_template('edit')
       end
     end
   end
 
-  describe "DELETE destroy" do
-    it "destroys the requested span" do
+  describe 'DELETE destroy' do
+    it 'destroys the requested span' do
       span = Span.create! valid_attributes
       expect {
         delete :destroy, {:id => span.to_param}, valid_session
       }.to change(Span, :count).by(-1)
     end
 
-    it "redirects to the spans list" do
+    it 'redirects to the spans list' do
       span = Span.create! valid_attributes
       delete :destroy, {:id => span.to_param}, valid_session
       response.should redirect_to(spans_url)

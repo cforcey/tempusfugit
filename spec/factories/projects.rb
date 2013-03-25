@@ -2,11 +2,11 @@
 
 FactoryGirl.define do
   factory :project do
-    name "Sample Project"
-    description "Sample project description."
+    name 'Sample Project'
+    description 'Sample project description.'
     user
     client
     hourly_rate 75
-    notes "My notes."
+    notes 'My notes.'
   end
 end

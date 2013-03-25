@@ -81,7 +81,7 @@ gem 'chronic'
 ####################### gems needed for just development and testing
 group :development do
   # a convenient generator for locale files from the database and repos
-  gem "i18n_generators", "~> 1.2.1"
+  gem 'i18n_generators', '~> 1.2.1'
 end
 
 group :development, :test do

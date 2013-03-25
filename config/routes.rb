@@ -4,12 +4,12 @@ Tempusfugit::Application.routes.draw do
   devise_for :users
 
   # static pages handled by a single controller pages
-  get "welcome" => 'pages#welcome', as: :welcome
-  get "about" => 'pages#about', as: :about
-  get "contact" => 'pages#contact', as: :contact
-  get "faq" => 'pages#faq', as: :faq
-  get "terms" => 'pages#terms', as: :terms
-  get "tour" => 'pages#tour', as: :tour
+  get 'welcome' => 'pages#welcome', as: :welcome
+  get 'about' => 'pages#about', as: :about
+  get 'contact' => 'pages#contact', as: :contact
+  get 'faq' => 'pages#faq', as: :faq
+  get 'terms' => 'pages#terms', as: :terms
+  get 'tour' => 'pages#tour', as: :tour
 
   # resource routes for major models
   resources :users

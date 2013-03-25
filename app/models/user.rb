@@ -12,13 +12,11 @@ class User < ActiveRecord::Base
   acts_as_user :roles => [:timekeeper, :admin] if ActiveRecord::Base.connected?
 
   # validate that first and last names are provided and at least one role be set
-  validates :roles_mask, :last, :first, :presence => true
-
-  # validate that emails are unique
-  validates :email, :presence => true, :uniqueness => true
-
-  # validate the time zones are in the supported range
-  validates_inclusion_of :time_zone, in: ActiveSupport::TimeZone.zones_map(&:name)
+  validates :roles_mask, presence: true, numericality: {only_integer: true}
+  validates :last, :first, presence: true
+  validates :hourly_rate, presence: true, numericality: {only_integer: true}
+  validates :time_zone, inclusion: { in: ActiveSupport::TimeZone.zones_map(&:name) }
+  # Note: devise takes care of validating emails are unique, formatted, confirmed, truncated
 
   # handle blank, extra long, or trailing spaces
   normalize_attributes :first, :middle, :last, :message, :email, :with  => [ :strip, :blank, :squish, { :truncate => { :length => 255 } } ]
@@ -31,7 +29,7 @@ class User < ActiveRecord::Base
   has_many :clients, :through => :projects
 
   # set an attribute for the current user so we can guarantee they do not delete themselves
-  attr_accessor :current_user
+  attr_accessor :passed_current_user
 
   # be sure a user does not every destroy their own currently logged in account
   before_destroy :validates_not_self
@@ -39,9 +37,31 @@ class User < ActiveRecord::Base
   # after creation, set up a default project since every span needs a project
   after_create :create_default_project
 
+  # scope to sort by last, first, middle
+  scope :order_by_sort_name, -> { order('users.last, users.first, users.middle') }
+
   # pretty printing of roles from symbol hash
   def roles_list
-    return roles.map { |k| k.to_s.humanize }.sort.to_sentence
+    roles.map { |k| k.to_s.humanize }.sort.to_sentence
+  end
+
+  # name attribute from first and last
+  def name
+    output = []
+    output << self.first unless self.first.blank?
+    output << self.middle unless self.middle.blank?
+    output << self.last unless self.last.blank?
+    output.join(' ')
+  end
+
+  # name attribute from first and last
+  def sort_name
+    output = []
+    output << self.last unless self.last.blank?
+    output << self.first unless self.first.blank?
+    output = [output.join(', ')]
+    output << self.middle unless self.middle.blank?
+    output.join(' ')
   end
 
   private
@@ -52,11 +72,11 @@ class User < ActiveRecord::Base
   # sometimes this is done in the controller, but REST API access in the future
   # may make such controls hard to guarantee.
   def validates_not_self
-    if current_user.blank?
-      errors.add :base, "Sorry, cannot determine the current user."
+    if passed_current_user.blank?
+      errors.add :base, I18n.translate('errors.messages.current_user_unknown')
       false
-    elsif current_user.id == id
-      errors.add :base, "Sorry, you cannot delete your own user account."
+    elsif passed_current_user.id == self.id
+      errors.add :base, I18n.translate('current_user_cannot_delete_self')
       false
     end
   end

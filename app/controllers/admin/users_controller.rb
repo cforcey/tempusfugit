@@ -6,7 +6,7 @@ class Admin::UsersController < Admin::AdminController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = User.order_by_sort_name
   end
 
   # GET /users/1
@@ -56,10 +56,19 @@ class Admin::UsersController < Admin::AdminController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user.current_user = current_user
-    @user.destroy
+    # to help protect against a user deleting themselves, we take
+    # the unusual step of assigning the current_user to an attribute
+    # on the model and then run a before_destroy check.  The
+    # advantage (arguable) of this over the standard controller
+    # based approach (testing right here and redirecting) is that
+    # the model takes a safe approach -- if the variable matches
+    # or is not set, it will block the deletion.  If new controllers,
+    # command lines, REST API calls are written, this will enforce
+    # this critical rule by disallowing deletion until the user is passed.
+    @user.passed_current_user = current_user
+    success = @user.destroy
     respond_to do |format|
-        if @user.try(:errors).try('blank?')
+        if success
           format.html { redirect_to admin_users_url, :notice => 'User was successfully deleted.' }
           format.json { head :no_content }
         else

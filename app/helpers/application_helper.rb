@@ -24,7 +24,7 @@ module ApplicationHelper
   end
 
   def timeago(time, options = {})
-    options[:class] ||= "timeago"
+    options[:class] ||= 'timeago'
     content_tag(:time, friendly_timestamp(time), options.merge(:datetime => time.getutc.iso8601)) if time
   end
 

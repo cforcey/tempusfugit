@@ -1,18 +1,18 @@
 require 'spec_helper'
 
-describe "spans/show" do
+describe 'spans/show' do
   before(:each) do
     @span = assign(:span, stub_model(Span,
-      :name => "Name",
-      :description => "Description",
+      :name => 'Name',
+      :description => 'Description',
       :user_id => 1,
       :project_id => 2,
       :billable => false,
-      :notes => "MyText"
+      :notes => 'MyText'
     ))
   end
 
-  it "renders attributes in <p>" do
+  it 'renders attributes in <p>' do
     render
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     rendered.should match(/Name/)
