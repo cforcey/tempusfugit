@@ -8,8 +8,61 @@ class Span < ActiveRecord::Base
   
   # a project should always have a name and a user that owns it
   validates :user, :name, :billable, :start_at, :end_at, :presence => true
-  
+
+  validates :time_span_unique
+
   # handle blank, extra long, or trailing spaces
-  normalize_attributes :name, :description, :with  => [ :strip, :blank, :squish, { :truncate => { :length => 255 } } ]
-  
+  normalize_attributes :name, :description, :start_input, :end_input, :with  => [ :strip, :blank, :squish, { :truncate => { :length => 255 } } ]
+
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :name, :description, :user_id, :project_id, :start_at, :end_at, :start_input, :end_input, :billable, :invoiced_at, :notes
+
+  # Time is so important to this application that we needed something better than a picker;
+  # This is an experimental use of chronic to parse the dates
+  attr_accessor :start_input, :end_input
+
+  # Order scope by start_at time
+  scope :order_by_start_at, -> { order('spans.start_at ASC') }
+
+  # Order scope by name
+  scope :order_by_name, -> { order('spans.name ASC') }
+
+  # calculate the duration in seconds
+  def duration_in_seconds
+    return self.end_at - self.start_at unless self.start_at.blank? || self.end_at.blank?
+  end
+
+  # calculate the duration in seconds
+  def duration_in_minutes
+    return Math.round(self.duration_in_seconds/60)
+  end
+
+  # calculate the duration in seconds
+  def duration_in_hours
+    return Math.round(self.duration_in_minutes/60)
+  end
+
+
+  def start_input=(value)
+    @start_input = value
+    self.start_at = Chronic.parse(value)
+  end
+
+  def end_input=(value)
+    @end_input = value
+    self.end_at = Chronic.parse(value)
+  end
+
+  private
+
+  # a special validator -- kept with the model as a best practice --
+  # so that spans can have a guranteed unique time period scoped
+  # by user.
+  def time_span_unique
+    if true
+      # TODO: Implement validation
+      errors.add(:expiration_date, "can't be in the past")
+    end
+  end
+
 end

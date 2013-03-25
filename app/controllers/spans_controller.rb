@@ -3,11 +3,12 @@ class SpansController < ApplicationController
   before_filter :authenticate_user!
 
   before_action :set_span, only: [:show, :edit, :update, :destroy]
+  before_action :set_spans, :set_projects, only: [:index, :show, :edit, :update, :new, :create]
 
   # GET /spans
   # GET /spans.json
   def index
-    @spans = current_user.spans
+    initialize_span(@projects)
   end
 
   # GET /spans/1
@@ -17,7 +18,7 @@ class SpansController < ApplicationController
 
   # GET /spans/new
   def new
-    @span = Span.new
+    initialize_span(@projects)
   end
 
   # GET /spans/1/edit
@@ -29,12 +30,14 @@ class SpansController < ApplicationController
   def create
     @span = Span.new(span_params)
 
+    # map the span to the current user (putting this in the form would be insecure)
+    @span.user = current_user
     respond_to do |format|
       if @span.save
-        format.html { redirect_to @span, notice: 'Span was successfully created.' }
+        format.html { redirect_to spans_path, notice: 'Span was successfully created.' }
         format.json { render action: 'show', status: :created, location: @span }
       else
-        format.html { render action: 'new' }
+        format.html { render action: 'index' }
         format.json { render json: @span.errors, status: :unprocessable_entity }
       end
     end
@@ -45,7 +48,7 @@ class SpansController < ApplicationController
   def update
     respond_to do |format|
       if @span.update(span_params)
-        format.html { redirect_to @span, notice: 'Span was successfully updated.' }
+        format.html { redirect_to spans_path, notice: 'Span was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -65,14 +68,29 @@ class SpansController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_span
       # spans should always be scoped to the current user
       @span = current_user.spans.find(params[:id])
     end
 
+    # because our create form is on the index page, index and new share the same setup
+    def initialize_span(projects)
+      # create a new one since we use an inline form
+      @span = Span.new(:project_id => projects.try(:first).try(:id))
+    end
+
+    def set_projects
+      @projects = current_user.projects.order_by_name
+    end
+
+    def set_spans
+      @spans = current_user.spans.scoped.order_by_start_at
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def span_params
-      params.require(:span).permit(:name, :description, :user_id, :project_id, :start_at, :end_at, :billable, :invoiced_at, :notes)
+      params.require(:span).permit(:name, :description, :user_id, :project_id, :start_at, :end_at, :start_input, :end_input, :billable, :invoiced_at, :notes)
     end
 end

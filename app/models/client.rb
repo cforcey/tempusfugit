@@ -13,5 +13,8 @@ class Client < ActiveRecord::Base
   
   # handle blank, extra long, or trailing spaces
   normalize_attributes :name, :description, :with  => [ :strip, :blank, :squish, { :truncate => { :length => 255 } } ]
+
+  # order by name
+  scope :order_by_name, -> { order('clients.name ASC') }
   
 end

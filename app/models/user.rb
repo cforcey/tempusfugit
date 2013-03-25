@@ -4,20 +4,22 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :registerable, :token_authenticatable
 
-         # Setup accessible (or protected) attributes for your model
+  # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, 
-    :roles, :first, :middle, :last, :organization, :message, :hourly_rate
+    :roles, :first, :middle, :last, :organization, :message, :hourly_rate, :time_zone
   
   # Canard defines roles in order from least to most powerful
   acts_as_user :roles => [:timekeeper, :admin] if ActiveRecord::Base.connected?
 
-  # require that at least one role be set
-  validates :roles_mask, :presence => true
-  # validate that first and last names are provided
-  validates :last, :first, :presence => true
+  # validate that first and last names are provided and at least one role be set
+  validates :roles_mask, :last, :first, :presence => true
+
   # validate that emails are unique
   validates :email, :presence => true, :uniqueness => true
-  
+
+  # validate the time zones are in the supported range
+  validates_inclusion_of :time_zone, in: ActiveSupport::TimeZone.zones_map(&:name)
+
   # handle blank, extra long, or trailing spaces
   normalize_attributes :first, :middle, :last, :message, :email, :with  => [ :strip, :blank, :squish, { :truncate => { :length => 255 } } ]
   
@@ -33,6 +35,9 @@ class User < ActiveRecord::Base
 
   # be sure a user does not every destroy their own currently logged in account
   before_destroy :validates_not_self
+
+  # after creation, set up a default project since every span needs a project
+  after_create :create_default_project
 
   # pretty printing of roles from symbol hash
   def roles_list
@@ -54,6 +59,11 @@ class User < ActiveRecord::Base
       errors.add :base, "Sorry, you cannot delete your own user account."
       false
     end
+  end
+
+  # when a user has been created, we need to ensure that they have a default project
+  def create_default_project
+    self.projects.create(:name => 'Default Project')
   end
   
 end

@@ -75,6 +75,9 @@ gem 'active_link_to'
 # sanitizes input for leading spaces, length, etc.
 gem 'attribute_normalizer'
 
+# natural language time parser
+gem 'chronic'
+
 ####################### gems needed for just development and testing
 group :development, :test do
   # rspec testing

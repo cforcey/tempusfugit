@@ -11,7 +11,9 @@ a = User.where(:email => 'admin@example.com').first_or_create(:password => '@dmi
   :password_confirmation => '@dminister', 
   :roles => ['admin'],
   :first => 'Default',
-  :last => 'Administrator'  )
+  :last => 'Administrator',
+  :time_zone => 'Eastern Time (US & Canada)')
+
 if a.errors.present?
   puts a.errors.inspect 
 else

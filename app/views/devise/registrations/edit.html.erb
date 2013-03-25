@@ -5,14 +5,10 @@
         <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
 
-    <div class="well">
-      <h3>Confirm Current Password</h3>
-      <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true, :autofocus => true %>
-    </div>
 
 
     <div class="well">
-      <h3>Change Personal Information</h3>
+      <h3>Personal Information</h3>
       <%= f.input :email, :required => true %>
       <%= f.input :first %>
       <%= f.input :middle %>
@@ -20,13 +16,18 @@
       <%= f.input :organization %>
       <%= f.input :hourly_rate %>
       <%= f.input :message %>
+      <%= f.input :time_zone, priority: /US/ %>
     </div>
     <div class="well">
       <h3>Change Password</h3>
-
       <p>Hint: Leave blank if you do not want to change your current one.</p>
       <%= f.input :password, :autocomplete => "off", :required => false %>
       <%= f.input :password_confirmation, :autocomplete => "off", :required => false %>
+    </div>
+    <div class="well">
+      <h3>Confirm Current Password</h3>
+      <p>Hint: We want to be sure this is you making these changes.</p>
+      <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true, :autofocus => true %>
     </div>
     <div class="form-actions">
       <%= f.button :submit, t('views.users.update_profile') %>

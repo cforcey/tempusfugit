@@ -16,30 +16,17 @@ feature "Span Management" do
   end
 
   scenario "Create a new span" do
-    pending "inline creation code"
     visit root_path
     click_link 'Spans'
-    click_link 'New Span'
     within("form.simple_form") do
-      fill_in 'Email', :with => 'new_span@example.com'
-      fill_in 'First', :with => 'New_first_name'
-      fill_in 'Last', :with => 'New_last_name'
-      fill_in 'Hourly rate', :with => '99'
-      fill_in 'Message', :with => 'New_invoice_message'
-      fill_in 'Organization', :with => 'New_organization'
-      check 'Timekeeper'
-      fill_in 'span_password', :with => 'new_secret!!!'
-      fill_in 'span_password_confirmation', :with => 'new_secret!!!'
+      fill_in 'span_name', :with => "Span Test"
+      fill_in 'span_description', :with => 'Span description here.'
+      fill_in 'span_start_at', :with => Time.zone.now
+      fill_in 'span_end_at', :with => 25.minutes.later
     end
-    click_button 'Update Span'
-    page.should have_content 'Span was successfully created.'
-    page.should have_content 'new_span@example.com'
-    page.should have_content 'New_first_name'
-    page.should have_content 'New_last_name'
-    page.should have_content '99'
-    page.should have_content 'New_invoice_message'
-    page.should have_content 'New_organization'
-    page.should have_content 'Timekeeper'
+    click_button 'Add Span'
+    page.should have_content 'Span Test.'
+    page.should have_content 'Span description here.'
   end
 
   scenario "Edit span as admin" do
@@ -66,7 +53,7 @@ feature "Span Management" do
   end
 
   scenario "Destroy a span" do
-    @other_span = create(:span, :name => 'To Be Deleted')
+    @other_span = create(:span, :name => 'To Be Deleted', :user => @admin)
     visit root_path
     click_link 'Spans'
     click_link "span_destroy_#{@other_span.id}"

@@ -25,6 +25,7 @@ feature "User Management" do
       fill_in 'Hourly rate', :with => '99'
       fill_in 'Message', :with => 'New_invoice_message'
       fill_in 'Organization', :with => 'New_organization'
+      select '(GMT-06:00) Central Time (US & Canada)'
       check 'Timekeeper'
       fill_in 'user_password', :with => 'new_secret!!!'
       fill_in 'user_password_confirmation', :with => 'new_secret!!!'
@@ -38,6 +39,7 @@ feature "User Management" do
     page.should have_content 'New_invoice_message'
     page.should have_content 'New_organization'
     page.should have_content 'Timekeeper'
+    page.should have_content 'Central Time (US & Canada)'
   end
 
   scenario "Edit user as admin" do

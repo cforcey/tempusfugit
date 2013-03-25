@@ -5,8 +5,8 @@ class CreateSpans < ActiveRecord::Migration
       t.string :description
       t.integer :user_id, :null => false
       t.integer :project_id, :null => false
-      t.datetime :start_at, :null => false
-      t.datetime :end_at, :null => false
+      t.datetime :start_at
+      t.datetime :end_at
       t.integer :hourly_rate, :null => false, :default => 0
       t.boolean :billable, :null => false, :default => true
       t.datetime :invoiced_at

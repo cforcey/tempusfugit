@@ -9,5 +9,6 @@ FactoryGirl.define do
     password "secret!!!"
     password_confirmation { password }
     roles ["admin"]
+    time_zone 'Eastern Time (US & Canada)'
   end
 end

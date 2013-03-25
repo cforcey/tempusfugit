@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require modernizr-latest
+//= require jquery.timeago
 //= require_tree .

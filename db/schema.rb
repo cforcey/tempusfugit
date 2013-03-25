@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130324181424) do
+ActiveRecord::Schema.define(version: 20130323201810) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20130324181424) do
     t.string   "name",                    null: false
     t.string   "description"
     t.integer  "user_id",                 null: false
-    t.integer  "client_id",               null: false
+    t.integer  "client_id"
     t.integer  "hourly_rate", default: 0, null: false
     t.text     "notes"
     t.datetime "created_at"
@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(version: 20130324181424) do
     t.string   "description"
     t.integer  "user_id",                    null: false
     t.integer  "project_id",                 null: false
-    t.datetime "start_at",                   null: false
-    t.datetime "end_at",                     null: false
+    t.datetime "start_at"
+    t.datetime "end_at"
     t.integer  "hourly_rate", default: 0,    null: false
     t.boolean  "billable",    default: true, null: false
     t.datetime "invoiced_at"
@@ -78,16 +78,17 @@ ActiveRecord::Schema.define(version: 20130324181424) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "authentication_token"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "roles_mask",             default: 1
     t.string   "first",                               null: false
     t.string   "middle"
     t.string   "last",                                null: false
     t.string   "organization"
     t.integer  "hourly_rate",            default: 0,  null: false
     t.string   "message"
-    t.string   "authentication_token"
+    t.string   "time_zone"
+    t.integer  "roles_mask",             default: 1
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true

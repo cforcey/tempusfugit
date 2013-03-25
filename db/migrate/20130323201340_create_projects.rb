@@ -4,7 +4,7 @@ class CreateProjects < ActiveRecord::Migration
       t.string :name, :null => false
       t.string :description
       t.integer :user_id, :null => false
-      t.integer :client_id, :null => false
+      t.integer :client_id
       t.integer :hourly_rate, :null => false, :default => 0
       t.text :notes
 
