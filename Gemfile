@@ -79,6 +79,11 @@ gem 'attribute_normalizer'
 gem 'chronic'
 
 ####################### gems needed for just development and testing
+group :development do
+  # a convenient generator for locale files from the database and repos
+  gem "i18n_generators", "~> 1.2.1"
+end
+
 group :development, :test do
   # rspec testing
   gem 'rspec-rails'
@@ -94,4 +99,6 @@ group :test do
   gem 'capybara-webkit'
   # database cleaner for when transactions are not available
   gem 'database_cleaner'
+  # nice set of concise validation tests
+  gem 'accept_values_for'
 end

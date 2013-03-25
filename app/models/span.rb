@@ -9,7 +9,7 @@ class Span < ActiveRecord::Base
   # a project should always have a name and a user that owns it
   validates :user, :name, :billable, :start_at, :end_at, :presence => true
 
-  validates :time_span_unique
+  validate :time_span_unique
 
   # handle blank, extra long, or trailing spaces
   normalize_attributes :name, :description, :start_input, :end_input, :with  => [ :strip, :blank, :squish, { :truncate => { :length => 255 } } ]
@@ -59,9 +59,9 @@ class Span < ActiveRecord::Base
   # so that spans can have a guranteed unique time period scoped
   # by user.
   def time_span_unique
-    if true
-      # TODO: Implement validation
-      errors.add(:expiration_date, "can't be in the past")
+    if self.start_at.present && self.end_at.present?
+      # check if any other start or end times fall between these
+      errors.add(:start_at, t('errors.messages.overlap')) if Span.occurs_between(start_at, end_at).exists?
     end
   end
 

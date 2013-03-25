@@ -9,4 +9,6 @@ describe User do
   it { should normalize_attribute(:message) }
   it { should normalize_attribute(:email) }
 
+  # test validations
+
 end

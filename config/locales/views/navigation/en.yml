@@ -20,6 +20,14 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  edit: "Edit"
+  submit: "Submit"
+  show: "Show"
+  back: "Back"
+  cancel: "Cancel"
+  time_spans: "Time Spans"
+  projects: "Projects"
+  clients: "Clients"
   views:
     navigation:
       site_title: "Tempus Fugit"
