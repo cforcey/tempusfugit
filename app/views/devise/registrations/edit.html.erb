@@ -1,4 +1,4 @@
-<h2><%= t('views.users.update_profile') %></h2>
+<h2><%= @title = t('views.users.update_profile') %></h2>
 
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:method => :put, :class => 'form-horizontal'}) do |f| %>
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -21,13 +21,13 @@
     <div class="well">
       <h3>Change Password</h3>
       <p>Hint: Leave blank if you do not want to change your current one.</p>
-      <%= f.input :password, :autocomplete => "off", :required => false %>
-      <%= f.input :password_confirmation, :autocomplete => "off", :required => false %>
+      <%= f.input :password, :autocomplete => 'off', :required => false %>
+      <%= f.input :password_confirmation, :autocomplete => 'off', :required => false %>
     </div>
     <div class="well">
       <h3>Confirm Current Password</h3>
       <p>Hint: We want to be sure this is you making these changes.</p>
-      <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true, :autofocus => true %>
+      <%= f.input :current_password, :hint => 'we need your current password to confirm your changes', :required => true, :autofocus => true %>
     </div>
     <div class="form-actions">
       <%= f.button :submit, t('views.users.update_profile') %>

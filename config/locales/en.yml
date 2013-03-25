@@ -137,6 +137,8 @@ en:
       record_invalid: ! 'Validation failed: %{errors}'
       taken: has already been taken
       overlaps: must not overlap with other time spans
+      current_user_unkown: cannot determine the current user.
+      current_user_cannot_delete_self: cannot delete own user account.
       too_long:
         one: is too long (maximum is 1 character)
         other: is too long (maximum is %{count} characters)
