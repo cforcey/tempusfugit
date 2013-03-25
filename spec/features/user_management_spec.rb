@@ -10,7 +10,7 @@ feature 'User Management' do
   scenario 'See a list of users' do
     visit root_path
     click_link 'Users'
-    page.should have_content 'Listing users'
+    page.should have_content 'Users'
     page.should have_content 'sample@example.com'
   end
 
@@ -69,7 +69,7 @@ feature 'User Management' do
     visit root_path
     click_link 'Users'
     click_link "user_destroy_#{@other_user.id}"
-    page.should have_content 'Listing users'
+    page.should have_content 'Users'
     page.should_not have_content @other_user.email
     page.should have_content 'User was successfully deleted.'
   end
