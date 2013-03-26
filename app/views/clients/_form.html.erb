@@ -1,16 +1,15 @@
-<%= simple_form_for(@client) do |f| %>
+<%= simple_form_for(@client, html: { class: 'form-horizontal' }) do |f| %>
   <%= f.error_notification %>
 
-  <div class="inputs">
+
     <%= f.input :name %>
     <%= f.input :description %>
     <%= f.hidden_field :user_id, value: current_user.try(:id) %>
-    <%= f.input :contact_id %>
+    <%= f.association :contact %>
     <%= f.input :hourly_rate %>
     <%= f.input :notes %>
-  </div>
 
-  <div class="actions">
+  <div class="form-actions">
     <%= f.button :submit %>
   </div>
 <% end %>
