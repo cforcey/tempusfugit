@@ -17,6 +17,9 @@ class Client < ActiveRecord::Base
   # handle blank, extra long, or trailing spaces
   normalize_attributes :name, :description, :with  => [ :strip, :blank, :squish, { :truncate => { :length => 255 } } ]
 
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :name, :description, :contact_id, :user_id, :hourly_rate, :notes
+
   # order by name
   scope :order_by_name, -> { order('clients.name ASC') }
   

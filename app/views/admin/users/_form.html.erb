@@ -1,5 +1,6 @@
 <%= simple_form_for([:admin, @user], html: {class: 'form-horizontal' }) do |f| %>
-	<%= f.input :email, :required => true, :autofocus => true %>
+    <%= f.error_notification %>
+    <%= f.input :email, :required => true, :autofocus => true %>
 	<%= f.input :first %>
 	<%= f.input :middle %>
 	<%= f.input :last %>

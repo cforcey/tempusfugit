@@ -1,0 +1,49 @@
+<h1>Project Summary</h1>
+
+<p>You searched for time activity for <%= @project.name %> between <%= localize(@start_date, format: :long) %>
+  and  <%= localize(@end_date, format: :long) %>. During this period, <%= @project.user.name %> worked <%= pluralize(@total_hours, 'hour') %>.</p>
+
+<blockquote>Note: Because I had in mind a consumer focus management tool, projects were scoped to the user
+  and not useful for a summary report. Here is the count for the user that owns this project.
+</blockquote>
+
+<div class="row">
+  <div class="span12">
+
+    <hr/>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Timekeeper</th>
+        <th>Start at</th>
+        <th>End at</th>
+        <th>Duration</th>
+        <th>Billable</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @spans.each do |span| %>
+          <tr>
+            <td><%= truncate span.name %></td>
+            <td><%= truncate(span.user.try(:name)) %></td>
+            <td title="<%= l(span.start_at, format: :long) %>"><%= l(span.start_at, format: :long) %></td>
+            <td title="<%= l(span.end_at, format: :long) %>"><%= l(span.end_at, format: :long) %></td>
+            <td><%= distance_of_time_in_words(span.start_at, span.end_at) %></td>
+            <td><%= boolean_icon(span.billable) %></td>
+            <td><%= link_to content_tag(:i, nil, class: 'icon-eye-open'), span, id: "span_show_#{span.id}" %></td>
+          </tr>
+      <% end %>
+      </tbody>
+
+      <tfoot>
+      <tr>
+        <td colspan="7"><span class='pull-right'><strong>Total number of hours: <%= @total_hours %></strong></span></td>
+      </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+

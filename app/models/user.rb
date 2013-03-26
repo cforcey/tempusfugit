@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   
   # a user has projects and, through them, clients
   has_many :projects, :dependent => :destroy
-  has_many :clients, :through => :projects
+  has_many :clients, :dependent => :destroy
 
   # set an attribute for the current user so we can guarantee they do not delete themselves
   attr_accessor :passed_current_user

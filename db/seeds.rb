@@ -7,15 +7,18 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # create an initial administrator to kick things off
-a = User.where(:email => 'admin@example.com').first_or_create(:password => '@dminister', 
-  :password_confirmation => '@dminister', 
-  :roles => ['admin'],
-  :first => 'Default',
-  :last => 'Administrator',
-  :time_zone => 'Eastern Time (US & Canada)')
+u = User.where(:email => 'admin@example.com').first_or_create(:password => '@dminister',
+                                                              :password_confirmation => 'password',
+                                                              :roles => ['admin'],
+                                                              :first => 'Default',
+                                                              :last => 'Administrator',
+                                                              :time_zone => 'Eastern Time (US & Canada)')
 
-if a.errors.present?
-  puts a.errors.inspect 
+if u.errors.present?
+  puts "There was an error saving the user: \n" + u.errors.inspect
 else
-  puts "Created or reset initial user admin@example.com to password of '@administer'."
-end  
+  puts "Created or reset initial user admin@example.com to password of 'password'."
+end
+
+# TODO: create a sample client and other nice instructive information
+# TODO: create some sample spans so the reports and everything look nice and normal

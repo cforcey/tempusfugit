@@ -11,6 +11,11 @@ Tempusfugit::Application.routes.draw do
   get 'terms' => 'pages#terms', as: :terms
   get 'tour' => 'pages#tour', as: :tour
 
+  # a growing list of reports for admins only
+  get "reports" => 'reports#index', as: :reports
+  get "reports/project_summary" => 'reports#project_summary', as: :report_project_summary
+  get "reports/user_project_detail" => 'reports#user_project_detail', as: :report_user_project_detail
+
   # resource routes for major models
   resources :users
   resources :clients

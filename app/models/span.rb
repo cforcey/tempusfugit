@@ -62,6 +62,23 @@ class Span < ActiveRecord::Base
     self.end_at = Chronic.parse(value)
   end
 
+  # TODO: Restore model specs for these methods
+
+  # calculate the duration in seconds
+  def duration_in_seconds
+    self.end_at - self.start_at unless self.start_at.blank? || self.end_at.blank?
+  end
+
+  # calculate the duration in seconds
+  def duration_in_minutes
+    return (self.duration_in_seconds/60).round unless self.duration_in_seconds.blank?
+  end
+
+  # calculate the duration in seconds
+  def duration_in_hours
+    return (self.duration_in_seconds/3600).round unless self.duration_in_seconds.blank?
+  end
+
   private
 
   # a special validator -- kept with the model as a best practice --
