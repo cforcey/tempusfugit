@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   # set according to their preferences, and be sure our time parser
   # chronic is also set to the same zone.
   def user_time_zone(&block)
-    Time.use_zone(current_user.time_zone, &block)
+    Time.use_zone(current_user.try(:time_zone), &block)
     Chronic.time_class = Time.zone
   end
 end

@@ -54,11 +54,13 @@ class Span < ActiveRecord::Base
 
   def start_input=(value)
     @start_input = value
+    Chronic.time_class = Time.zone
     self.start_at = Chronic.parse(value)
   end
 
   def end_input=(value)
     @end_input = value
+    Chronic.time_class = Time.zone
     self.end_at = Chronic.parse(value)
   end
 

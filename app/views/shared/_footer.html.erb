@@ -4,7 +4,8 @@
 		&copy; <%= t('views.navigation.copyright') %> |
         <%= active_link_to t('views.navigation.contact'), contact_path %> |
         <%= active_link_to t('views.navigation.terms'), terms_path %> |
-        <%= active_link_to t('views.navigation.faq'), faq_path %>
+        <%= active_link_to t('views.navigation.faq'), faq_path %> |
+        Time zone: <%=  Time.zone.to_s %>. <%=  link_to 'Change?', edit_user_registration_path %>
      </span>
       <span class='pull-right'>
         <em><%= t('views.navigation.motto') %> </em>
